@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package grpcservice;
+
+// The gRPC service definition
+service Table {
+  rpc ColSum (ColSumReq) returns (ColSumResp);
+  rpc Upload (UploadReq) returns (UploadResp);
+}
+
+// The request message for column sum
+message ColSumReq {
+  string column = 1;
+  string format = 2;
+}
+
+// The response message for column sum
+message ColSumResp {
+  int64 total = 1;
+  string error = 2;
+}
+
+// The request message for file upload
+message UploadReq {
+  bytes csv_data = 1;
+}
+
+// The response message for file upload
+message UploadResp {
+  string error = 1;
+}
