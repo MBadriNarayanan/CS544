@@ -571,10 +571,11 @@ def big_sum():
     print(f"csv: {csv_ms} ms, parquet: {parquet_ms} ms, ratio: {ms_ratio:.2f}")
 
     if ms_ratio < 2:
-        print("🟡 Warning: Parquet sum should be significantly faster than csv sum")
-        return TestPoint(
-            20, "[Warning] Parquet sum should be significantly faster than csv sum"
+        print("🟡 Warning: Parquet sum should be significantly faster.")
+        print(
+            "It may be due to reading the whole parquet file rather than a single column."
         )
+        print("Ignore the warning if you have avoided that.")
 
 
 if __name__ == "__main__":
