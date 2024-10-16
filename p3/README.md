@@ -23,6 +23,7 @@ Before starting, please review the [general project directions](../projects.md).
 * 07 Oct, 2024: `autograde.py` and `check_sub.py` uploaded. Grading details updated.
 * 10 Oct, 2024: Corrections about data types.
 * 10 Oct, 2024: Increased timeouts from some tests. Update `autograde.py`. This will _not_ negatively effect existing submissions.
+* 11 Oct, 2024: Changed the warning text in `autograde.py`. `[Warning]` will only appear in `STDOUT`, not in `score.json`.
 
 ## Part 1: Communication
 
