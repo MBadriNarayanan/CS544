@@ -29,7 +29,7 @@ if _version_not_supported:
 
 
 class TableStub(object):
-    """The gRPC service definition"""
+    """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
         """Constructor.
@@ -38,13 +38,13 @@ class TableStub(object):
             channel: A grpc.Channel.
         """
         self.ColSum = channel.unary_unary(
-            "/grpcservice.Table/ColSum",
+            "/Table/ColSum",
             request_serializer=table__pb2.ColSumReq.SerializeToString,
             response_deserializer=table__pb2.ColSumResp.FromString,
             _registered_method=True,
         )
         self.Upload = channel.unary_unary(
-            "/grpcservice.Table/Upload",
+            "/Table/Upload",
             request_serializer=table__pb2.UploadReq.SerializeToString,
             response_deserializer=table__pb2.UploadResp.FromString,
             _registered_method=True,
@@ -52,7 +52,7 @@ class TableStub(object):
 
 
 class TableServicer(object):
-    """The gRPC service definition"""
+    """Missing associated documentation comment in .proto file."""
 
     def ColSum(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -80,16 +80,14 @@ def add_TableServicer_to_server(servicer, server):
             response_serializer=table__pb2.UploadResp.SerializeToString,
         ),
     }
-    generic_handler = grpc.method_handlers_generic_handler(
-        "grpcservice.Table", rpc_method_handlers
-    )
+    generic_handler = grpc.method_handlers_generic_handler("Table", rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers("grpcservice.Table", rpc_method_handlers)
+    server.add_registered_method_handlers("Table", rpc_method_handlers)
 
 
 # This class is part of an EXPERIMENTAL API.
 class Table(object):
-    """The gRPC service definition"""
+    """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def ColSum(
@@ -107,7 +105,7 @@ class Table(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/grpcservice.Table/ColSum",
+            "/Table/ColSum",
             table__pb2.ColSumReq.SerializeToString,
             table__pb2.ColSumResp.FromString,
             options,
@@ -137,7 +135,7 @@ class Table(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            "/grpcservice.Table/Upload",
+            "/Table/Upload",
             table__pb2.UploadReq.SerializeToString,
             table__pb2.UploadResp.FromString,
             options,

@@ -19,7 +19,7 @@ _sym_db = _symbol_database.Default()
 
 
 DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
-    b'\n\x0btable.proto\x12\x0bgrpcservice"+\n\tColSumReq\x12\x0e\n\x06\x63olumn\x18\x01 \x01(\t\x12\x0e\n\x06\x66ormat\x18\x02 \x01(\t"*\n\nColSumResp\x12\r\n\x05total\x18\x01 \x01(\x03\x12\r\n\x05\x65rror\x18\x02 \x01(\t"\x1d\n\tUploadReq\x12\x10\n\x08\x63sv_data\x18\x01 \x01(\x0c"\x1b\n\nUploadResp\x12\r\n\x05\x65rror\x18\x01 \x01(\t2}\n\x05Table\x12\x39\n\x06\x43olSum\x12\x16.grpcservice.ColSumReq\x1a\x17.grpcservice.ColSumResp\x12\x39\n\x06Upload\x12\x16.grpcservice.UploadReq\x1a\x17.grpcservice.UploadRespb\x06proto3'
+    b'\n\x0btable.proto"\x1d\n\tUploadReq\x12\x10\n\x08\x63sv_data\x18\x01 \x01(\x0c"\x1b\n\nUploadResp\x12\r\n\x05\x65rror\x18\x01 \x01(\t"+\n\tColSumReq\x12\x0e\n\x06\x63olumn\x18\x01 \x01(\t\x12\x0e\n\x06\x66ormat\x18\x02 \x01(\t"*\n\nColSumResp\x12\r\n\x05total\x18\x01 \x01(\x03\x12\r\n\x05\x65rror\x18\x02 \x01(\t2M\n\x05Table\x12!\n\x06\x43olSum\x12\n.ColSumReq\x1a\x0b.ColSumResp\x12!\n\x06Upload\x12\n.UploadReq\x1a\x0b.UploadRespb\x06proto3'
 )
 
 _globals = globals()
@@ -27,14 +27,14 @@ _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, "table_pb2", _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
     DESCRIPTOR._loaded_options = None
-    _globals["_COLSUMREQ"]._serialized_start = 28
-    _globals["_COLSUMREQ"]._serialized_end = 71
-    _globals["_COLSUMRESP"]._serialized_start = 73
-    _globals["_COLSUMRESP"]._serialized_end = 115
-    _globals["_UPLOADREQ"]._serialized_start = 117
-    _globals["_UPLOADREQ"]._serialized_end = 146
-    _globals["_UPLOADRESP"]._serialized_start = 148
-    _globals["_UPLOADRESP"]._serialized_end = 175
-    _globals["_TABLE"]._serialized_start = 177
-    _globals["_TABLE"]._serialized_end = 302
+    _globals["_UPLOADREQ"]._serialized_start = 15
+    _globals["_UPLOADREQ"]._serialized_end = 44
+    _globals["_UPLOADRESP"]._serialized_start = 46
+    _globals["_UPLOADRESP"]._serialized_end = 73
+    _globals["_COLSUMREQ"]._serialized_start = 75
+    _globals["_COLSUMREQ"]._serialized_end = 118
+    _globals["_COLSUMRESP"]._serialized_start = 120
+    _globals["_COLSUMRESP"]._serialized_end = 162
+    _globals["_TABLE"]._serialized_start = 164
+    _globals["_TABLE"]._serialized_end = 241
 # @@protoc_insertion_point(module_scope)
