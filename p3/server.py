@@ -2,16 +2,16 @@ import grpc
 import table_pb2_grpc
 import table_pb2
 import pytz
+import uuid
 
-import pandas as pd
-import pyarrow as pa
+import pyarrow.csv as csv
 import pyarrow.parquet as pq
 
 from concurrent import futures
 from datetime import datetime
 from threading import Lock
 
-file_store = {"MetaData": {}, "Index": -1}
+file_store = {}
 lock = Lock()
 
 
@@ -23,56 +23,56 @@ def get_timestamp():
 
 class TableServicer(table_pb2_grpc.TableServicer):
     def Upload(self, request, context):
-        global file_store, lock
+        file_id = str(uuid.uuid4())
         timestamp = get_timestamp()
-        csv_path = "/data_{}.csv".format(timestamp)
-        parquet_path = "/data_{}.parquet".format(timestamp)
-        with open(csv_path, "wb") as csv_file:
-            csv_file.write(request.csv_data)
+        csv_path = "{}_{}.csv".format(file_id, timestamp)
+        parquet_path = "{}_{}.parquet".format(file_id, timestamp)
+
         try:
-            df = pd.read_csv(csv_path)
+            with open(csv_path, "wb") as csv_file:
+                csv_file.write(request.csv_data)
+
+            table = csv.read_csv(csv_path)
+            pq.write_table(table, parquet_path)
+
+            with lock:
+                file_store["{}_{}".format(file_id, timestamp)] = {
+                    "csv": csv_path,
+                    "parquet": parquet_path,
+                }
+            return table_pb2.UploadResp(error="")
         except Exception as error:
-            return table_pb2.UploadResp(
-                error="Error processing CSV: {}".format(str(error))
-            )
-
-        table = pa.Table.from_pandas(df)
-        pq.write_table(table, parquet_path)
-
-        with lock:
-            meta_data = {
-                "Timestamp": timestamp,
-                "CSV": csv_path,
-                "Parquet": parquet_path,
-            }
-            file_store["Index"] += 1
-            file_store["MetaData"][file_store["Index"]] = meta_data
-
-        return table_pb2.UploadResp(error="")
+            return table_pb2.UploadResp(error=str(error))
 
     def ColSum(self, request, context):
-        global file_store, lock
         total_sum = 0
         column = request.column
-        format = request.format.lower()
+        request_format = request.format.lower()
 
-        with lock:
-            file_store_copy = file_store.copy()
+        try:
+            with lock:
+                file_store_copy = file_store.copy()
 
-        for _, meta_data in file_store_copy["MetaData"].items():
-            try:
-                if format == "csv":
-                    csv_path = meta_data["CSV"]
-                    df = pd.read_csv(csv_path)
-                    if column in df.columns:
-                        total_sum += df[column].sum()
-                elif format == "parquet":
-                    parquet_path = meta_data["Parquet"]
-                    table = pq.read_table(parquet_path, columns=[column])
-                    total_sum += table.column(column).to_pandas().sum()
-            except Exception as error:
-                continue
-        return table_pb2.ColSumResp(total=total_sum, error="")
+            for file_key, meta_data in file_store_copy.items():
+                try:
+                    if request_format == "csv":
+                        table = csv.read_csv(meta_data["csv"])
+                        if column in table.column_names:
+                            column_data = table[request.column]
+                            for chunk in column_data.chunks:
+                                total_sum += sum(chunk.to_pylist())
+                    elif request_format == "parquet":
+                        parquet_meta_data = pq.read_metadata(meta_data["parquet"])
+                        if request.column in parquet_meta_data.schema.names:
+                            table = pq.read_table(meta_data["parquet"], columns=[request.column])
+                            column_data = table[request.column]
+                            for chunk in column_data.chunks:
+                                total_sum += sum(chunk.to_pylist())
+                except Exception as error:
+                    continue
+            return table_pb2.ColSumResp(total=total_sum, error="")
+        except Exception as error:
+            return table_pb2.ColSumResp(error=str(error))
 
 
 def serve():
