@@ -28,7 +28,8 @@ Before starting, please review the [general project directions](../projects.md).
 
 ## Corrections/Clarifications
 
-* none yet
+* 17 Oct, 2024: `autograde.py` and `check_sub.py` published.
+* 17 Oct, 2024: Details regarding output updated (the third point of [Grading](#grading)).
 
 ## Part 1: Deployment and Data Upload
 
@@ -313,7 +314,17 @@ There are a couple strategies you could use to find the answer:
 
 ## Grading
 
-Details about the autograder are coming soon.
+* Copy the `autograde.py` file to your working directory, then execute the command `python3 autograde.py` to test your work. After running the script, your score will be saved in the `score.json` file.
+
+* For debugging, you may need to check the outputs of your notebooks from the autograder. After running the autograder, an `_autograder_nb` directory will be created, where you can find the executed notebooks.
+
+* Make sure your answers are in cell output - not print statements (see the example below)
+  ```
+  my_answer = []
+  for i in range(5):
+    my_answer.append(5)
+  my_answer
+  ```
 
 ## Submission
 
@@ -336,6 +347,8 @@ steps as a last check on your submission.
 
 You're free to create and include other code files if you like (for
 example, you could write a .py module used by both notebooks).
+
+After pushing your code to your designated GitLab repository, you can verify your submission by copying `check_sub.py` to your working directory and running the command `python3 check_sub.py`.
 
 <!--
 ## Tester:(To be updated)
