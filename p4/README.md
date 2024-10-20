@@ -30,6 +30,8 @@ Before starting, please review the [general project directions](../projects.md).
 
 * 17 Oct, 2024: `autograde.py` and `check_sub.py` published.
 * 17 Oct, 2024: Details regarding output updated (the third point of [Grading](#grading)).
+* 18 Oct, 2024: Correction of description in [Q8](#q8-how-much-faster-can-we-make-the-previous-code-if-we-only-read-the-loan_amount-column)
+, the answer should be time taken in Q7 divided by time taken in Q8.
 
 ## Part 1: Deployment and Data Upload
 
@@ -285,7 +287,7 @@ which is the default).
 
 Copy and modify the code from Q7 to implement this optimization, and
 again record the time.  The answer should be a multiple (time taken in
-Q8 divided by time taken in Q7).  Performance varies a lot, but the
+Q7 divided by time taken in Q8).  Performance varies a lot, but the
 optimized version will probably be 10-40x faster.
 
 ## Part 4: Disaster Strikes
