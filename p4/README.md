@@ -32,6 +32,7 @@ Before starting, please review the [general project directions](../projects.md).
 * 17 Oct, 2024: Details regarding output updated (the third point of [Grading](#grading)).
 * 18 Oct, 2024: Correction of description in [Q8](#q8-how-much-faster-can-we-make-the-previous-code-if-we-only-read-the-loan_amount-column)
 , the answer should be time taken in Q7 divided by time taken in Q8.
+* 22 Oct, 2024: Expected range of answer for [Q8](#q8-how-much-faster-can-we-make-the-previous-code-if-we-only-read-the-loan_amount-column) relaxed from \[10,40\] to \[7,60\], and a note  regarding grading details also attached.
 
 ## Part 1: Deployment and Data Upload
 
@@ -288,7 +289,9 @@ which is the default).
 Copy and modify the code from Q7 to implement this optimization, and
 again record the time.  The answer should be a multiple (time taken in
 Q7 divided by time taken in Q8).  Performance varies a lot, but the
-optimized version will probably be 10-40x faster.
+optimized version will probably be 7-60x faster.
+
+**Note:** Sometimes the speedup ratio might fluctuate and be out of expected range. When grading, in that case, TA will check the code manully. Ensure your code just read the single column of `loan_amount`. 
 
 ## Part 4: Disaster Strikes
 
