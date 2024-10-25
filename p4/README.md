@@ -33,6 +33,7 @@ Before starting, please review the [general project directions](../projects.md).
 * 18 Oct, 2024: Correction of description in [Q8](#q8-how-much-faster-can-we-make-the-previous-code-if-we-only-read-the-loan_amount-column)
 , the answer should be time taken in Q7 divided by time taken in Q8.
 * 22 Oct, 2024: Expected range of answer for [Q8](#q8-how-much-faster-can-we-make-the-previous-code-if-we-only-read-the-loan_amount-column) relaxed from \[10,40\] to \[7,60\], and a note  regarding grading details also attached.
+* 24 Oct, 2024: Autograder fixed to avoid starting tests before HDFS detects that there are missing blocks for [Q10](#q10-how-many-blocks-of-singleparquet-were-lost).
 
 ## Part 1: Deployment and Data Upload
 
