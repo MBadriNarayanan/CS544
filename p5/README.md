@@ -119,6 +119,12 @@ run `docker compose up -d`.  Wait a bit and make sure all containers
 are still running.  If some are starting up and then exiting, troubleshoot
 the reason before proceeding.
 
+Whenever you see some error messages suggesting space is not enough when doing P5, you can save your file, kill and remove all containers using
+```
+docker rm -f $(docker ps -a -q)
+``` 
+and then restart the containers.
+
 ## Data Setup
 
 ### Virtual Machine
@@ -427,6 +433,13 @@ Be sure to include a comment at the top of notebook with your name (or both name
 We should be able to run the following on your submission to directly create the mini cluster:
 
 ```
+docker build . -f p5-base.Dockerfile -t p5-base
+docker build . -f notebook.Dockerfile -t p5-nb
+docker build . -f namenode.Dockerfile -t p5-nn
+docker build . -f datanode.Dockerfile -t p5-dn
+docker build . -f boss.Dockerfile -t p5-boss
+docker build . -f worker.Dockerfile -t p5-worker
+
 docker compose up -d
 ```
 
@@ -435,4 +448,24 @@ notebook, and run it.
 
 ## Testing
 
-Details coming soon.
+You can check your notebook answers with this command:
+
+```sh
+python3 -u autograde.py
+```
+
+Before running autograder, please click `Kernel` -> `Restart Kernel and Run All Cells` to double confirm your results, and make sure all cells are running sequentially.
+
+For the autograder to work, for each question, please include a line of comment at the beginning of code cell that outputs the answer. For example, the code cell for question 7 should look like
+```python
+#q7
+...
+```
+
+Of course, the checker only looks at the answers, not how you got them, so there may be further deductions (especially in the case of hardcoding answers). Moreover, Q6, Q8 and Q10 will be manually graded after your submission, so the autograder will not give you any feedback on them (it always says `PASS`)!
+
+After pushing your code to your designated GitLab repository, you can verify your submission by copying `check_sub.py` to your working directory and running the command 
+
+```
+python3 check_sub.py
+```
