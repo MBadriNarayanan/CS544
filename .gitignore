@@ -1,0 +1,6 @@
+p4/*.csv
+p4/*.parquet
+p5/nb/data/
+p5/arid2017_to_lei_xref_csv.zip
+p5/code_sheets.zip
+p5/hdma-wi-2021.zip
