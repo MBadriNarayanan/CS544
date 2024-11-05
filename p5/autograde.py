@@ -151,7 +151,7 @@ def save_results(results):
 
 
 def check_for_updated_files():
-    files = ["autograde.py"]
+    files = ["autograde.py", "p5-base.Dockerfile"]
     for file in files:
         # get md5sum of the remote file
         remote_md5sum, _ = subprocess.run(

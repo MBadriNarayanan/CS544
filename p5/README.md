@@ -25,7 +25,7 @@ Before starting, please revisit the [general project directions](../projects.md)
 
 ## Corrections/Clarifications
 
-* none yet
+* Oct 30: more VM troubleshooting tips are not available [here](../csl-vm).
 
 ## Cluster Setup
 
@@ -196,7 +196,7 @@ The try to extract the name from one of the rows with a little Python
 code.  This will help you determine how to write your lambda (which
 will take a `Row` and return a boolean).
 
-Use the some format as previous projects for all your notebook answers
+Use the same format as previous projects for all your notebook answers
 (last line of a cell contains an expression giving the answer, and the
 cell starts with a "#q1" comment, or similar).
 
@@ -385,7 +385,7 @@ table into a new dataframe `df`. Cast the `approval`, `income` and
 all features and label columns by 0.0.
 
 **Important:** the order of rows in `df` should be the same as the
-  order in the original loans table.
+  order in the original loans table. Please also avoid converting `df` into some other data structure, e.g., Pandas, then converting back, as this will potentially change the structure of `df`, leading to indeterministic result in the following questions.
 
 Split `df` as follows:
 
@@ -408,7 +408,7 @@ from pyspark.ml.classification import DecisionTreeClassifier
 Use the VectorAssembler to combine the feature columns `loan_amount`,
 `income`, `interest_rate` into a single column.
 
-Train 5 `DecisionTreeClassifier` on your training data to predict `approved` based on the features by setting max depth to be 1, 5, 10, 15, 20, respectively. Also set `seed` to be always 41 and keep other parameters default. You won't pass autograder or our test cases if you do not do so when creating `DecisionTreeClassifier` objects.
+Train 5 `DecisionTreeClassifier` on your training data to predict `approved` based on the features by setting max depth to be 1, 5, 10, 15, 20, respectively. When creating each `DecisionTreeClassifier` object, please also set `seed` to be always 41 (which is a different process from splitting train and test split) and keep other parameters default. You won't pass autograder or our test cases if you do not do so when creating `DecisionTreeClassifier` objects.
 
 Use the models to make predictions on the test data.  What are their
 *accuracy* (fraction of times the model is correct)? 
