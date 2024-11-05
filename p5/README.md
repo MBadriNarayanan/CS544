@@ -385,9 +385,11 @@ table into a new dataframe `df`. Cast the `approval`, `income` and
 all features and label columns by 0.0.
 
 **Important:** the order of rows in `df` should be the same as the
-  order in the original loans table. Please also avoid converting `df` into some other data structure, e.g., Pandas, then converting back, as this will potentially change the structure of `df`, leading to indeterministic result in the following questions.
+  order in the original loans table. Please also avoid converting `df` into some other data structure, e.g., Pandas, then converting back, as this will potentially change the structure of `df`, leading to indeterministic result in the following questions. To confirm the rows in `df` is in the right order, you can use `df.show()` to print out first several rows of your processed df, the value of the first 20 rows should be the same as in the picture below:
 
-Split `df` as follows:
+<img src="part-4_debug.png" width=300>
+
+Then split `df` as follows:
 
 ```python
 # deterministic split
