@@ -131,8 +131,13 @@ def main():
         "src/ClientStationSchema.py",
         "src/ghcnd-stations.txt",
         "src/station.proto",
-        "src/weather.parquet",
+        "src/weather.parquet/part-00000-60b4b05b-4d7b-4f3f-8b3d-bd434a9156a2-c000.snappy.parquet",
+        "src/weather.parquet/_SUCCESS",
+        "src/weather.parquet/.part-00000-60b4b05b-4d7b-4f3f-8b3d-bd434a9156a2-c000.snappy.parquet.crc",
+        "src/weather.parquet/._SUCCESS.crc",
     ]
+    run_command("mkdir -p src/weather.parquet")
+    
     for file in files:
         run_command(f"wget {repo_url}{file} -O {file}")
 
